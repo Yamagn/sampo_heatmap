@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.storage.StorageManager
-import android.util.Log
 import android.widget.TextView
 import android.view.View
 import android.widget.Button
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity() {
             "sampo_heatmap", Context.MODE_PRIVATE)
         var str = sharedPref.getString("sampo_heatmap_id", null)
         if (str == null) {
-            Log.d("WHEN_NO_UUID", "no uuid found")
             // TODO; generate uuid
             val uuidDefault = StorageManager.UUID_DEFAULT
             with (sharedPref.edit()) {
@@ -27,8 +25,6 @@ class MainActivity : AppCompatActivity() {
                 apply()
             }
             str = uuidDefault.toString()
-        } else {
-            Log.d("WHEN_UUID_FOUND", "uuid found")
         }
 
         setContentView(R.layout.activity_main)
