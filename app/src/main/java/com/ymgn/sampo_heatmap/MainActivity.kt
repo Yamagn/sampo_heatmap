@@ -1,5 +1,6 @@
 package com.ymgn.sampo_heatmap
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
                 mapButton.visibility = View.INVISIBLE
             }
             isStarted = !isStarted
+        }
+        mapButton.setOnClickListener {
+            val intent = Intent(applicationContext, MapActivity::class.java)
+            startActivity(intent)
         }
     }
 }
