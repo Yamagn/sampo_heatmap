@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.os.storage.StorageManager
 import android.util.Log
 import android.widget.TextView
+import android.view.View
+import android.widget.Button
+import androidx.core.view.isInvisible
 
 class MainActivity : AppCompatActivity() {
+    private var isStarted = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,7 +32,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
+
         val userIdText = findViewById<TextView>(R.id.id_text)
         userIdText.text = str
+
+        val startButton = findViewById<Button>(R.id.start_button)
+        val mapButton = findViewById<Button>(R.id.map_button)
+        startButton.setOnClickListener {
+            if(isStarted) {
+                startButton.setText("スタート")
+                mapButton.visibility = View.VISIBLE
+            } else {
+                startButton.setText("終了")
+                mapButton.visibility = View.INVISIBLE
+            }
+            isStarted = !isStarted
+        }
     }
 }
